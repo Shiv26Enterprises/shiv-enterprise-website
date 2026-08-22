@@ -1,0 +1,564 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-graphite: var(--graphite);
+  --color-graphite-soft: var(--graphite-soft);
+  --color-steel: var(--steel);
+  --color-steel-light: var(--steel-light);
+  --color-safety: var(--safety);
+  --color-safety-foreground: var(--safety-foreground);
+  --color-bone: var(--bone);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.125rem;
+
+  --graphite: oklch(0.19 0.008 250);
+  --graphite-soft: oklch(0.26 0.008 250);
+  --steel: oklch(0.62 0.012 250);
+  --steel-light: oklch(0.86 0.006 250);
+  --safety: oklch(0.68 0.19 45);
+  --safety-foreground: oklch(0.16 0.01 250);
+  --bone: oklch(0.965 0.006 85);
+
+  --background: oklch(0.965 0.006 85);
+  --foreground: oklch(0.19 0.008 250);
+  --card: oklch(0.99 0.003 85);
+  --card-foreground: oklch(0.19 0.008 250);
+  --popover: oklch(0.99 0.003 85);
+  --popover-foreground: oklch(0.19 0.008 250);
+  --primary: oklch(0.19 0.008 250);
+  --primary-foreground: oklch(0.965 0.006 85);
+  --secondary: oklch(0.92 0.006 85);
+  --secondary-foreground: oklch(0.19 0.008 250);
+  --muted: oklch(0.925 0.005 85);
+  --muted-foreground: oklch(0.48 0.01 250);
+  --accent: oklch(0.68 0.19 45);
+  --accent-foreground: oklch(0.16 0.01 250);
+  --destructive: oklch(0.55 0.21 27);
+  --destructive-foreground: oklch(0.98 0.003 85);
+  --border: oklch(0.87 0.006 250);
+  --input: oklch(0.87 0.006 250);
+  --ring: oklch(0.68 0.19 45);
+  --chart-1: oklch(0.68 0.19 45);
+  --chart-2: oklch(0.45 0.02 250);
+  --chart-3: oklch(0.62 0.012 250);
+  --chart-4: oklch(0.78 0.1 70);
+  --chart-5: oklch(0.3 0.01 250);
+  --sidebar: oklch(0.19 0.008 250);
+  --sidebar-foreground: oklch(0.9 0.004 85);
+  --sidebar-primary: oklch(0.68 0.19 45);
+  --sidebar-primary-foreground: oklch(0.16 0.01 250);
+  --sidebar-accent: oklch(0.26 0.008 250);
+  --sidebar-accent-foreground: oklch(0.96 0.004 85);
+  --sidebar-border: oklch(0.32 0.008 250);
+  --sidebar-ring: oklch(0.68 0.19 45);
+}
+
+.dark {
+  --background: oklch(0.16 0.008 250);
+  --foreground: oklch(0.95 0.005 85);
+  --card: oklch(0.21 0.008 250);
+  --card-foreground: oklch(0.95 0.005 85);
+  --popover: oklch(0.21 0.008 250);
+  --popover-foreground: oklch(0.95 0.005 85);
+  --primary: oklch(0.95 0.005 85);
+  --primary-foreground: oklch(0.19 0.008 250);
+  --secondary: oklch(0.26 0.008 250);
+  --secondary-foreground: oklch(0.95 0.005 85);
+  --muted: oklch(0.26 0.008 250);
+  --muted-foreground: oklch(0.7 0.01 250);
+  --accent: oklch(0.68 0.19 45);
+  --accent-foreground: oklch(0.16 0.01 250);
+  --destructive: oklch(0.62 0.21 27);
+  --destructive-foreground: oklch(0.98 0.003 85);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.68 0.19 45);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    min-width: 20rem;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--safety);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--safety);
+    color: var(--safety-foreground);
+  }
+
+  .field {
+    width: 100%;
+    min-height: 2.75rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    padding: 0.65rem 0.8rem;
+    color: var(--color-foreground);
+    font: inherit;
+  }
+}
+
+/* ---- Industrial utilities ---- */
+
+@utility kicker {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@utility rule-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--steel) 22%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--steel) 22%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+}
+
+@utility hatch {
+  background-image: repeating-linear-gradient(45deg, var(--safety) 0 8px, transparent 8px 16px);
+}
+
+@utility measure-marks {
+  background-image: repeating-linear-gradient(
+    to right,
+    color-mix(in oklab, var(--steel) 60%, transparent) 0 1px,
+    transparent 1px 12px
+  );
+}
+
+@utility bolt {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--steel) 70%, transparent);
+    background: radial-gradient(
+      circle at 35% 30%,
+      color-mix(in oklab, var(--steel-light) 90%, transparent),
+      color-mix(in oklab, var(--steel) 50%, transparent)
+    );
+  }
+}
+
+@utility surface-dark {
+  background-color: var(--graphite);
+  color: oklch(0.95 0.005 85);
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes gear-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee-x var(--marquee-duration, 46s) linear infinite;
+}
+
+@utility animate-gear {
+  animation: gear-spin 24s linear infinite;
+}
+
+@utility animate-rise {
+  animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility industrial-button {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  padding-inline: 1.5rem;
+  color: var(--accent-foreground);
+  font-weight: 600;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: var(--bone);
+  }
+}
+
+@utility industrial-button-secondary {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in oklab, var(--bone) 28%, transparent);
+  padding-inline: 1.5rem;
+  color: var(--bone);
+  font-weight: 600;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    background: color-mix(in oklab, var(--accent) 10%, transparent);
+  }
+}
+
+.hero-ambient {
+  background:
+    radial-gradient(
+      circle at 78% 34%,
+      color-mix(in oklab, var(--accent) 16%, transparent),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 12% 95%,
+      color-mix(in oklab, var(--accent) 8%, transparent),
+      transparent 32%
+    ),
+    linear-gradient(
+      115deg,
+      transparent 45%,
+      color-mix(in oklab, var(--graphite-soft) 70%, transparent)
+    );
+}
+
+.nav-active::after {
+  content: "";
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0;
+  left: 0.75rem;
+  height: 3px;
+  background: var(--accent);
+}
+
+.action-tile,
+.sector-card,
+.industry-cell,
+.process-row {
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+.action-tile:hover {
+  position: relative;
+  z-index: 1;
+  transform: translateY(-5px);
+  border-color: var(--graphite);
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklab, var(--accent) 10%, var(--card)),
+    var(--card)
+  );
+  box-shadow: 0 22px 55px -42px var(--graphite);
+}
+
+.industry-cell:hover {
+  background: var(--graphite-soft);
+}
+
+.sector-card:hover {
+  z-index: 1;
+  border-color: var(--graphite);
+  background: var(--background);
+}
+
+.process-row:hover {
+  padding-inline: 0.75rem;
+  background: color-mix(in oklab, var(--accent) 6%, transparent);
+}
+
+.machine-deck::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--accent) 7%, transparent),
+    transparent 42%
+  );
+}
+
+.machine-scan {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 46%,
+    color-mix(in oklab, var(--accent) 55%, transparent) 49%,
+    color-mix(in oklab, var(--accent) 12%, transparent) 51%,
+    transparent 54%,
+    transparent 100%
+  );
+  background-size: 100% 220%;
+  animation: deck-scan 5.2s ease-in-out infinite;
+}
+
+.status-pulse {
+  box-shadow: 0 0 0 0 color-mix(in oklab, #34d399 50%, transparent);
+  animation: status-pulse 2.2s ease-out infinite;
+}
+
+.rotor-assembly {
+  position: relative;
+  width: clamp(10.5rem, 22vw, 13.5rem);
+  aspect-ratio: 1;
+  filter: drop-shadow(0 0 24px color-mix(in oklab, var(--accent) 18%, transparent));
+}
+
+.rotor-orbit,
+.rotor-blades,
+.rotor-core,
+.rotor-core-inner {
+  position: absolute;
+  border-radius: 9999px;
+}
+
+.rotor-orbit {
+  inset: 0;
+  border: 1px dashed color-mix(in oklab, var(--steel) 55%, transparent);
+  box-shadow:
+    inset 0 0 0 9px color-mix(in oklab, var(--steel) 5%, transparent),
+    0 0 0 16px color-mix(in oklab, var(--steel) 4%, transparent);
+  animation: rotor-reverse 22s linear infinite;
+}
+
+.rotor-orbit::before,
+.rotor-orbit::after {
+  content: "";
+  position: absolute;
+  inset: 20%;
+  border: 1px solid color-mix(in oklab, var(--steel) 22%, transparent);
+  border-radius: inherit;
+}
+
+.rotor-orbit::after {
+  inset: 42%;
+  background: color-mix(in oklab, var(--accent) 20%, var(--graphite));
+}
+
+.rotor-blades {
+  inset: 1.8rem;
+  animation: rotor-spin 12s linear infinite;
+}
+
+.rotor-blades span {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 0.42rem);
+  width: 0.84rem;
+  height: 42%;
+  transform: rotate(calc(var(--blade-index) * 30deg)) translateY(-100%);
+  transform-origin: 50% 0;
+  border: 1px solid color-mix(in oklab, var(--accent) 65%, transparent);
+  background: linear-gradient(
+    to bottom,
+    var(--accent),
+    color-mix(in oklab, var(--accent) 8%, transparent)
+  );
+  clip-path: polygon(18% 0, 100% 24%, 70% 100%, 0 76%);
+}
+
+.rotor-core {
+  inset: 31%;
+  z-index: 2;
+  border: 1px solid color-mix(in oklab, var(--bone) 25%, transparent);
+  background: radial-gradient(
+    circle at 35% 30%,
+    var(--steel-light),
+    var(--graphite-soft) 36%,
+    var(--graphite) 70%
+  );
+  box-shadow:
+    0 0 0 9px color-mix(in oklab, var(--graphite-soft) 82%, transparent),
+    0 0 0 10px color-mix(in oklab, var(--accent) 28%, transparent);
+}
+
+.rotor-core-inner {
+  inset: 30%;
+  border: 1px solid color-mix(in oklab, var(--bone) 35%, transparent);
+  background: var(--graphite);
+  box-shadow: inset 0 0 12px #000;
+}
+
+.rotor-boiler .rotor-blades {
+  animation-duration: 18s;
+}
+
+.rotor-generator .rotor-blades {
+  animation-duration: 7s;
+}
+
+.rotor-plant .rotor-orbit {
+  border-style: solid;
+}
+
+@keyframes rotor-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotor-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes deck-scan {
+  0%,
+  100% {
+    background-position: 0 -100%;
+    opacity: 0.15;
+  }
+  50% {
+    background-position: 0 100%;
+    opacity: 0.75;
+  }
+}
+
+@keyframes status-pulse {
+  70% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
