@@ -81,7 +81,7 @@ function About() {
     <SiteShell>
       <PageIntro
         kicker="About Shiv Enterprises"
-        title="Your trusted partner for machinery and scrap trading"
+        title="Your trusted partner for used machinery and scrap trading"
         text="Professionally managed buying, selling and sourcing solutions for used industrial machinery, surplus equipment and industrial scrap."
       />
 
