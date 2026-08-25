@@ -45,7 +45,7 @@ function InventoryPage() {
     <SiteShell>
       <PageIntro
         kicker="Current machinery"
-        title="Industrial assets. Ready for a closer look."
+        title="Industrial Machinery That Delivers Real Value."
         text="Search available equipment by name, specification, duty or condition, then open a complete record for the facts currently held on file."
       />
       <section className="mx-auto max-w-[1480px] px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-16">

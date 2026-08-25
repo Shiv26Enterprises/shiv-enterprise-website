@@ -12,7 +12,7 @@ function Contact() {
     <SiteShell>
       <PageIntro
         kicker="Contact"
-        title="Start with the job, not the jargon"
+        title="The Right Machine. The Right Result."
         text="Share the duty, output, location and timing. We’ll connect your requirement to the full inventory and reply with what is actually available."
       />
       <section className="mx-auto grid max-w-[1280px] gap-7 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[.7fr_1.3fr] lg:gap-10 lg:py-20">
@@ -22,7 +22,7 @@ function Contact() {
           <ContactItem icon={Mail} label="Email" value={s.email} />
           <div className="rounded-2xl border border-dashed border-steel p-5 text-sm leading-6 text-muted-foreground">
             For the quickest response, use the Quick enquiry button to connect with our team on
-            WhatsApp at +91 87968 86223.
+            WhatsApp at +91 87965 65443.
           </div>
         </div>
         <div className="rounded-[1.5rem] border border-border bg-white/70 p-5 shadow-[0_24px_70px_-50px_var(--graphite)] sm:rounded-[2rem] sm:p-9">

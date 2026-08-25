@@ -49,7 +49,7 @@ function Industries() {
     <SiteShell>
       <PageIntro
         kicker="Industries served"
-        title="Machinery makes sense in context."
+        title="Machinery That Makes Sense."
         text="The right asset depends on the process, duty cycle, utilities, site access and future operating plan—not only a specification sheet."
       />
 

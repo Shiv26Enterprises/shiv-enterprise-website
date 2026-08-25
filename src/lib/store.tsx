@@ -219,7 +219,7 @@ const CONTACT_DETAILS = {
   address: "Gaur City Mall, Office No. 811, Greater Noida",
   phone: "+91 87965 65443 · +91 87968 86223",
   email: "infor.shiventerprise26@gmail.com · anil04172@gmail.com",
-  whatsapp: "+91 87968 86223",
+  whatsapp: "+91 87965 65443",
 } satisfies Pick<Settings, "address" | "phone" | "email" | "whatsapp">;
 
 export const seedSettings: Settings = {
