@@ -241,12 +241,21 @@ function QuickEnquiry() {
       href={href}
       target={canUseWhatsApp ? "_blank" : undefined}
       rel={canUseWhatsApp ? "noreferrer" : undefined}
-      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 border border-graphite bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground shadow-[6px_6px_0_0_var(--graphite)] transition-transform hover:-translate-y-0.5"
+      aria-label={canUseWhatsApp ? "Send a WhatsApp enquiry" : "Open the contact page"}
+      className="group fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-40 inline-flex min-h-14 items-center gap-2.5 rounded-full border border-white/15 bg-graphite py-1.5 pl-1.5 pr-4 text-bone shadow-[0_14px_35px_-12px_rgba(0,0,0,.75)] transition hover:-translate-y-0.5 hover:border-[#25D366]/70 hover:shadow-[0_16px_38px_-12px_rgba(37,211,102,.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 sm:bottom-5 sm:right-5"
     >
-      <MessageCircle className="size-4" aria-hidden="true" />
-      <span className="hidden sm:inline">Quick enquiry</span>
-      <span className="sr-only">
-        {canUseWhatsApp ? "Send a WhatsApp enquiry" : "Open the contact page"}
+      <span
+        className="relative grid size-11 shrink-0 place-items-center rounded-full bg-[#25D366] text-[#073b2c] shadow-inner transition-transform group-hover:scale-105"
+        aria-hidden="true"
+      >
+        <MessageCircle className="absolute size-7 stroke-[2.2]" />
+        <Phone className="size-3.5 stroke-[2.6]" />
+      </span>
+      <span className="leading-tight">
+        <span className="block text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#79e89d]">
+          Quick enquiry
+        </span>
+        <span className="block text-sm font-bold">WhatsApp</span>
       </span>
     </a>
   );
