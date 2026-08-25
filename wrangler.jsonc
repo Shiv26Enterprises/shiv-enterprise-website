@@ -6,17 +6,21 @@
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./dist/client",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+  },
+  "vars": {
+    "CONTACT_FROM_EMAIL": "Shiv Enterprises <onboarding@resend.dev>",
+    "CONTACT_TO_EMAILS": "infor.shiventerprise26@gmail.com",
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "shiv-enterprises-db",
       "database_id": "d02e724e-51fc-4050-b456-2b01641c77dd",
-      "migrations_dir": "./drizzle"
-    }
+      "migrations_dir": "./drizzle",
+    },
   ],
   "observability": {
-    "enabled": true
-  }
+    "enabled": true,
+  },
 }
