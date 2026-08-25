@@ -75,17 +75,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Shiv Enterprises | Industrial Machinery" },
+      { title: "Shiv Enterprises | Used Machinery & Industrial Scrap" },
       {
         name: "description",
         content:
-          "One searchable inventory of pre-owned industrial machinery, with clear availability, records and direct enquiries.",
+          "Buy, sell and source used industrial machinery or trade industrial scrap with transparent dealings, competitive pricing and direct enquiries.",
       },
       { name: "author", content: "Shiv Enterprises" },
-      { property: "og:title", content: "Shiv Enterprises | Industrial Machinery" },
+      {
+        property: "og:title",
+        content: "Shiv Enterprises | Used Machinery & Industrial Scrap",
+      },
       {
         property: "og:description",
-        content: "Industrial machinery sourcing, sales, inspection and relocation.",
+        content:
+          "Used industrial machinery buying, selling and sourcing, plus professional industrial scrap trading.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/og.png" },

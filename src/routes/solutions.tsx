@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Boxes, Check, PackageSearch, ScanSearch, Truck } from "lucide-react";
+import { ArrowRight, Boxes, Check, PackageSearch, Recycle, ScanSearch, Truck } from "lucide-react";
 import { SiteShell } from "@/components/site/SiteShell";
 import { PageIntro } from "./inventory.index";
 
@@ -71,6 +71,22 @@ const SERVICES = [
       "Re-erection support scope",
     ],
   },
+  {
+    id: "scrap",
+    icon: Recycle,
+    label: "Scrap",
+    number: "05",
+    kicker: "Trade responsibly",
+    title: "Turn industrial scrap and idle plant assets into value.",
+    description:
+      "We coordinate suitable buying and selling opportunities for machinery scrap, factory clearance material, and ferrous or non-ferrous industrial metal scrap.",
+    points: [
+      "Scrap category and quantity review",
+      "Site and clearance requirement capture",
+      "Buyer and seller coordination",
+      "Commercial and movement scope",
+    ],
+  },
 ] as const;
 
 function Solutions() {
@@ -81,14 +97,14 @@ function Solutions() {
   return (
     <SiteShell>
       <PageIntro
-        kicker="Machinery solutions"
-        title="Four routes. One industrial desk."
-        text="Buy, sell, source or relocate machinery through a process shaped around the asset, the site and the commercial objective."
+        kicker="Industrial trading solutions"
+        title="Five routes. One industrial desk."
+        text="Buy, sell, source or relocate machinery—and trade industrial scrap—through a process shaped around the asset, site and commercial objective."
       />
 
       <section className="mx-auto max-w-[1480px] px-4 py-10 sm:px-6 sm:py-14 lg:px-10 lg:py-20">
         <div
-          className="grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-4"
+          className="grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-5"
           role="tablist"
           aria-label="Machinery services"
         >
@@ -167,7 +183,7 @@ function Solutions() {
                   WORKFLOW / {active.number}
                 </span>
                 <div className="mt-4 flex items-center gap-2" aria-hidden="true">
-                  {[0, 1, 2, 3].map((step) => (
+                  {[0, 1, 2, 3, 4].map((step) => (
                     <span
                       key={step}
                       className={`h-1 flex-1 ${step <= SERVICES.findIndex((service) => service.id === activeId) ? "bg-accent" : "bg-white/10"}`}

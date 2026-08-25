@@ -5,6 +5,7 @@ import {
   Factory,
   MoveRight,
   PackageSearch,
+  Recycle,
   ScanSearch,
   ShieldCheck,
   Truck,
@@ -53,6 +54,13 @@ const ACTIONS = [
     title: "Relocate assets",
     text: "Coordinate inspection, dismantling, packing, logistics and re-deployment.",
     image: "/reference/relocation.webp",
+  },
+  {
+    icon: Recycle,
+    index: "06",
+    title: "Trade scrap",
+    text: "Buy or sell machinery scrap, factory clearance lots and industrial metal scrap.",
+    image: "/reference/steel-plant.webp",
   },
 ] as const;
 
@@ -132,8 +140,8 @@ function Index() {
               Heavy machinery. <span className="text-accent">Smarter movement.</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-7 text-steel-light/80 sm:text-lg">
-              Buy, sell, source and relocate industrial equipment through one practical team—with
-              visible condition, usable records and direct project coordination.
+              Buy, sell and source used industrial machinery or trade industrial scrap through one
+              practical team—with transparent dealings and direct project coordination.
             </p>
             <div className="mt-7 grid gap-3 min-[420px]:flex min-[420px]:flex-wrap sm:mt-9">
               <Link to="/inventory" className="industrial-button group">
@@ -159,7 +167,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="relative z-10 mx-auto -mt-px grid max-w-[1480px] border-l border-t border-border bg-background sm:grid-cols-2 lg:grid-cols-5">
+      <section className="relative z-10 mx-auto -mt-px grid max-w-[1480px] border-l border-t border-border bg-background sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         {ACTIONS.map(({ icon: Icon, index, title, text, image }) => (
           <Link
             key={title}
@@ -215,8 +223,9 @@ function Index() {
             Machinery decisions made clearer.
           </h2>
           <p className="mt-6 max-w-xl leading-7 text-muted-foreground">
-            Shiv Enterprises supports machinery buyers, sellers and asset owners with practical
-            enquiry handling, sourcing support, inspection coordination and service planning.
+            Shiv Enterprises connects buyers, sellers and asset owners with used machinery, surplus
+            equipment and industrial scrap opportunities through transparent, practical
+            coordination.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link to="/about" className="industrial-button">
