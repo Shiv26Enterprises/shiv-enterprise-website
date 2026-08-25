@@ -6,6 +6,12 @@ import { z } from "zod";
 
 import { requireAdminSession } from "@/lib/admin-auth";
 import {
+  EMAIL_MAX_LENGTH,
+  isValidEmailAddress,
+  isValidPhoneNumber,
+  PHONE_MAX_INPUT_LENGTH,
+} from "@/lib/enquiry-validation";
+import {
   defaultState,
   seedMachines,
   seedSettings,
@@ -81,8 +87,16 @@ const mutationSchema = z.discriminatedUnion("action", [
 const enquirySchema = z.object({
   name: z.string().trim().min(2).max(120),
   company: z.string().trim().max(160).default(""),
-  phone: z.string().trim().min(7).max(40),
-  email: z.string().trim().email().max(200),
+  phone: z
+    .string()
+    .trim()
+    .max(PHONE_MAX_INPUT_LENGTH)
+    .refine(isValidPhoneNumber, "Enter a valid phone number."),
+  email: z
+    .string()
+    .trim()
+    .max(EMAIL_MAX_LENGTH)
+    .refine(isValidEmailAddress, "Enter a valid email address."),
   machine: z.string().trim().max(180).default(""),
   requirement: z.string().trim().min(5).max(5_000),
   website: z.string().max(0).optional().default(""),

@@ -1,9 +1,16 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Grid2X2, List, Search, SlidersHorizontal } from "lucide-react";
+import { Grid2X2, List, Search } from "lucide-react";
 
 import { MachineCard } from "@/components/site/MachineCard";
 import { SiteShell } from "@/components/site/SiteShell";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useMachines } from "@/lib/store";
 
 export const Route = createFileRoute("/inventory/")({ component: InventoryPage });
@@ -42,60 +49,125 @@ function InventoryPage() {
         text="Search available equipment by name, specification, duty or condition, then open a complete record for the facts currently held on file."
       />
       <section className="mx-auto max-w-[1480px] px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-16">
-        <div className="grid gap-3 rounded-[1.5rem] border border-border bg-card p-4 shadow-[0_16px_50px_-42px_var(--graphite)] lg:grid-cols-[1.6fr_1fr_1fr_auto]">
-          <label className="relative">
-            <span className="sr-only">Search inventory</span>
-            <Search className="absolute left-4 top-3.5 size-4 text-muted-foreground" />
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search name, duty, output or specification"
-              className="field rounded-full pl-11"
-            />
+        <div className="grid gap-4 rounded-[1.5rem] border border-border bg-card p-4 shadow-[0_16px_50px_-42px_var(--graphite)] sm:p-5 lg:grid-cols-[1.6fr_.8fr_.9fr_auto] lg:items-end">
+          <label className="grid gap-2" htmlFor="inventory-search">
+            <span className="kicker pl-1 text-muted-foreground">Search inventory</span>
+            <span className="relative">
+              <Search
+                className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-accent"
+                aria-hidden="true"
+              />
+              <input
+                id="inventory-search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Name, duty, output or specification"
+                className="field h-12 rounded-xl bg-background pl-11 pr-4 transition hover:border-steel focus:border-accent"
+              />
+            </span>
           </label>
-          <select
-            aria-label="Availability"
-            className="field rounded-full"
-            value={availability}
-            onChange={(event) => setAvailability(event.target.value)}
-          >
-            <option>All</option>
-            <option>Available</option>
-            <option>Sold / held</option>
-          </select>
-          <select
-            aria-label="Sort"
-            className="field rounded-full"
-            value={sort}
-            onChange={(event) => setSort(event.target.value)}
-          >
-            <option value="order">Featured order</option>
-            <option value="name">Name A–Z</option>
-            <option value="available">Available first</option>
-          </select>
-          <div className="flex rounded-full border border-border p-1">
-            <button
-              aria-label="Grid view"
-              onClick={() => setLayout("grid")}
-              className={`grid size-10 place-items-center rounded-full ${layout === "grid" ? "bg-primary text-primary-foreground" : ""}`}
+
+          <div className="grid gap-2">
+            <label className="kicker pl-1 text-muted-foreground" htmlFor="availability-select">
+              Availability
+            </label>
+            <Select value={availability} onValueChange={setAvailability}>
+              <SelectTrigger
+                id="availability-select"
+                className="h-12 rounded-xl border-border bg-background px-4 font-semibold shadow-none transition hover:border-steel focus:ring-0 data-[state=open]:border-accent [&>svg]:text-accent"
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="rounded-xl border-white/10 bg-graphite p-1 text-bone shadow-2xl">
+                <SelectItem
+                  value="All"
+                  className="rounded-lg py-2.5 focus:bg-accent focus:text-accent-foreground data-[state=checked]:text-accent"
+                >
+                  All machinery
+                </SelectItem>
+                <SelectItem
+                  value="Available"
+                  className="rounded-lg py-2.5 focus:bg-accent focus:text-accent-foreground data-[state=checked]:text-accent"
+                >
+                  Available now
+                </SelectItem>
+                <SelectItem
+                  value="Sold / held"
+                  className="rounded-lg py-2.5 focus:bg-accent focus:text-accent-foreground data-[state=checked]:text-accent"
+                >
+                  Sold / held
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="grid gap-2">
+            <label className="kicker pl-1 text-muted-foreground" htmlFor="sort-select">
+              Sort machinery
+            </label>
+            <Select value={sort} onValueChange={setSort}>
+              <SelectTrigger
+                id="sort-select"
+                className="h-12 rounded-xl border-border bg-background px-4 font-semibold shadow-none transition hover:border-steel focus:ring-0 data-[state=open]:border-accent [&>svg]:text-accent"
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="rounded-xl border-white/10 bg-graphite p-1 text-bone shadow-2xl">
+                <SelectItem
+                  value="order"
+                  className="rounded-lg py-2.5 focus:bg-accent focus:text-accent-foreground data-[state=checked]:text-accent"
+                >
+                  Featured order
+                </SelectItem>
+                <SelectItem
+                  value="name"
+                  className="rounded-lg py-2.5 focus:bg-accent focus:text-accent-foreground data-[state=checked]:text-accent"
+                >
+                  Name A–Z
+                </SelectItem>
+                <SelectItem
+                  value="available"
+                  className="rounded-lg py-2.5 focus:bg-accent focus:text-accent-foreground data-[state=checked]:text-accent"
+                >
+                  Available first
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="grid gap-2">
+            <span className="kicker pl-1 text-muted-foreground">View</span>
+            <div
+              className="flex h-12 rounded-xl border border-border bg-background p-1"
+              role="group"
+              aria-label="Inventory layout"
             >
-              <Grid2X2 className="size-4" />
-            </button>
-            <button
-              aria-label="List view"
-              onClick={() => setLayout("list")}
-              className={`grid size-10 place-items-center rounded-full ${layout === "list" ? "bg-primary text-primary-foreground" : ""}`}
-            >
-              <List className="size-4" />
-            </button>
+              <button
+                type="button"
+                aria-label="Grid view"
+                aria-pressed={layout === "grid"}
+                onClick={() => setLayout("grid")}
+                className={`grid size-10 place-items-center rounded-lg transition ${layout === "grid" ? "bg-graphite text-accent" : "text-muted-foreground hover:bg-muted hover:text-foreground"}`}
+              >
+                <Grid2X2 className="size-4" />
+              </button>
+              <button
+                type="button"
+                aria-label="List view"
+                aria-pressed={layout === "list"}
+                onClick={() => setLayout("list")}
+                className={`grid size-10 place-items-center rounded-lg transition ${layout === "list" ? "bg-graphite text-accent" : "text-muted-foreground hover:bg-muted hover:text-foreground"}`}
+              >
+                <List className="size-4" />
+              </button>
+            </div>
           </div>
         </div>
-        <div className="mt-7 flex items-center justify-between">
+        <div className="mt-7">
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">{filtered.length}</strong>{" "}
             {filtered.length === 1 ? "machine" : "machines"} in view
           </p>
-          <SlidersHorizontal className="size-4 text-primary" />
         </div>
         {filtered.length ? (
           <div

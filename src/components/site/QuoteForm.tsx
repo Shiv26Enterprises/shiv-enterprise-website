@@ -1,5 +1,11 @@
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
+import {
+  EMAIL_MAX_LENGTH,
+  isValidEmailAddress,
+  isValidPhoneNumber,
+  PHONE_MAX_INPUT_LENGTH,
+} from "@/lib/enquiry-validation";
 import { useMachines } from "@/lib/store";
 import { submitEnquiry } from "@/lib/shared-store-server";
 
@@ -27,15 +33,25 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
     if (!form.name.trim() || !form.phone.trim() || !form.email.trim() || !form.requirement.trim())
       return setError("Please complete the required fields.");
     if (form.name.trim().length < 2) return setError("Please enter your full name.");
-    if (form.phone.trim().length < 7) return setError("Please enter a valid phone number.");
-    if (!/^\S+@\S+\.\S+$/.test(form.email)) return setError("Enter a valid email address.");
+    if (!isValidPhoneNumber(form.phone))
+      return setError("Enter a valid phone number with 7 to 15 digits.");
+    if (!isValidEmailAddress(form.email)) return setError("Enter a valid email address.");
     if (form.requirement.trim().length < MIN_REQUIREMENT_LENGTH)
       return setError(
         `Please describe your requirement in at least ${MIN_REQUIREMENT_LENGTH} characters.`,
       );
     setSending(true);
     try {
-      const result = await submitEnquiry({ data: form });
+      const result = await submitEnquiry({
+        data: {
+          ...form,
+          name: form.name.trim(),
+          company: form.company.trim(),
+          phone: form.phone.trim(),
+          email: form.email.trim(),
+          requirement: form.requirement.trim(),
+        },
+      });
       if (!result.ok) return setError(result.error);
       setWarning(result.emailed ? "" : result.warning || "Your enquiry was saved for the team.");
       setSent(true);
@@ -102,10 +118,11 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
         <Field label="Phone *">
           <input
             required
-            minLength={7}
-            maxLength={40}
+            type="tel"
+            maxLength={PHONE_MAX_INPUT_LENGTH}
             inputMode="tel"
             autoComplete="tel"
+            placeholder="+91 98765 43210"
             value={form.phone}
             onChange={(e) => set("phone", e.target.value)}
             className="field"
@@ -115,8 +132,9 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
           <input
             required
             type="email"
-            maxLength={200}
+            maxLength={EMAIL_MAX_LENGTH}
             autoComplete="email"
+            placeholder="name@company.com"
             value={form.email}
             onChange={(e) => set("email", e.target.value)}
             className="field"
