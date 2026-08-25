@@ -132,7 +132,7 @@ function About() {
           <div className="max-w-3xl">
             <p className="kicker text-accent">What we do</p>
             <h2 className="mt-4 text-4xl uppercase leading-[.9] sm:text-6xl">
-              Two markets. One practical trading desk.
+              Your Machinery Partner
             </h2>
           </div>
 
