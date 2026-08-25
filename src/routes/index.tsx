@@ -137,7 +137,7 @@ function Index() {
               Industrial machinery · India & worldwide
             </p>
             <h1 className="mt-5 max-w-3xl text-[clamp(3.1rem,8.5vw,6.9rem)] uppercase leading-[.84] tracking-tight text-bone sm:mt-7">
-              Heavy machinery. <span className="text-accent">Smarter movement.</span>
+              Industrial Assets. <span className="text-accent">Smarter Investments.</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-7 text-steel-light/80 sm:text-lg">
               Buy, sell and source used industrial machinery or trade industrial scrap through one
