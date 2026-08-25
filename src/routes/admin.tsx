@@ -805,6 +805,9 @@ function SettingsPanel() {
                 value={form.gst}
                 onChange={(e) => set("gst", e.target.value)}
               />
+              <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                Displayed on the public About page and in the site footer after you save.
+              </p>
             </Field>
           </div>
         </section>

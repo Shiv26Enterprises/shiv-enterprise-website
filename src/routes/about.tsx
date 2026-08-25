@@ -12,6 +12,8 @@ import {
   Target,
 } from "lucide-react";
 import { SiteShell } from "@/components/site/SiteShell";
+import { getPublicGst } from "@/lib/settings";
+import { useStore } from "@/lib/store";
 import { PageIntro } from "./inventory.index";
 
 export const Route = createFileRoute("/about")({ component: About });
@@ -77,6 +79,9 @@ const REASONS = [
 ] as const;
 
 function About() {
+  const { state } = useStore();
+  const gst = getPublicGst(state.settings);
+
   return (
     <SiteShell>
       <PageIntro
@@ -108,6 +113,16 @@ function About() {
               With industrial market knowledge and strong business relationships, we help customers
               find machinery suited to their requirements, budget and application.
             </p>
+            {gst && (
+              <div className="mt-7 flex max-w-xl items-center gap-4 rounded-2xl border border-border bg-card px-5 py-4">
+                <span className="shrink-0 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-accent-foreground">
+                  GSTIN
+                </span>
+                <span className="min-w-0 break-all font-mono text-sm font-semibold text-foreground sm:text-base">
+                  {gst}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </section>

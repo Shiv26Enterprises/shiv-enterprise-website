@@ -8,8 +8,10 @@ import {
   Menu,
   MessageCircle,
   Phone,
+  ReceiptText,
   X,
 } from "lucide-react";
+import { getPublicGst } from "@/lib/settings";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
@@ -134,6 +136,7 @@ function Header() {
 function Footer() {
   const { state } = useStore();
   const settings = state.settings;
+  const gst = getPublicGst(settings);
 
   return (
     <footer className="surface-dark mt-16 sm:mt-20 lg:mt-24">
@@ -212,6 +215,15 @@ function Footer() {
               <Mail className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
               <span>{settings.email}</span>
             </li>
+            {gst && (
+              <li className="flex gap-3">
+                <ReceiptText className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
+                <span>
+                  <span className="mr-1 text-steel-light/55">GSTIN:</span>
+                  <span className="font-mono">{gst}</span>
+                </span>
+              </li>
+            )}
           </ul>
         </div>
       </div>

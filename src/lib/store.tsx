@@ -225,7 +225,7 @@ const CONTACT_DETAILS = {
 export const seedSettings: Settings = {
   businessName: "Shiv Enterprises",
   ...CONTACT_DETAILS,
-  gst: "GSTIN placeholder — add in Admin › Settings",
+  gst: "",
   marqueeEnabled: true,
   marqueeSpeed: "normal",
   proofPoints: [
