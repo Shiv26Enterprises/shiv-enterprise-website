@@ -3,6 +3,8 @@ import { CheckCircle2, Send } from "lucide-react";
 import { useMachines } from "@/lib/store";
 import { submitEnquiry } from "@/lib/shared-store-server";
 
+const MIN_REQUIREMENT_LENGTH = 5;
+
 export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) {
   const machines = useMachines();
   const [sent, setSent] = useState(false);
@@ -24,7 +26,13 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
     setError("");
     if (!form.name.trim() || !form.phone.trim() || !form.email.trim() || !form.requirement.trim())
       return setError("Please complete the required fields.");
+    if (form.name.trim().length < 2) return setError("Please enter your full name.");
+    if (form.phone.trim().length < 7) return setError("Please enter a valid phone number.");
     if (!/^\S+@\S+\.\S+$/.test(form.email)) return setError("Enter a valid email address.");
+    if (form.requirement.trim().length < MIN_REQUIREMENT_LENGTH)
+      return setError(
+        `Please describe your requirement in at least ${MIN_REQUIREMENT_LENGTH} characters.`,
+      );
     setSending(true);
     try {
       const result = await submitEnquiry({ data: form });
@@ -32,7 +40,7 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
       setWarning(result.emailed ? "" : result.warning || "Your enquiry was saved for the team.");
       setSent(true);
     } catch {
-      setError("We could not send your enquiry. Please try again or contact us on WhatsApp.");
+      setError("We could not save your enquiry. Please try again or contact us on WhatsApp.");
     } finally {
       setSending(false);
     }
@@ -43,7 +51,9 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
         <CheckCircle2 className="mx-auto size-10 text-accent" />
         <h3 className="mt-4 text-2xl uppercase">Enquiry received</h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          Your request is safely recorded and the Shiv Enterprises team has been notified.
+          {warning
+            ? "Your request is safely recorded and available to the Shiv Enterprises team."
+            : "Your request is safely recorded and the Shiv Enterprises team has been notified."}
         </p>
         {warning && <p className="mt-3 text-xs text-amber-700">{warning}</p>}
         <button
@@ -71,6 +81,10 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Name *">
           <input
+            required
+            minLength={2}
+            maxLength={120}
+            autoComplete="name"
             value={form.name}
             onChange={(e) => set("name", e.target.value)}
             className="field"
@@ -78,6 +92,8 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
         </Field>
         <Field label="Company">
           <input
+            maxLength={160}
+            autoComplete="organization"
             value={form.company}
             onChange={(e) => set("company", e.target.value)}
             className="field"
@@ -85,6 +101,11 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
         </Field>
         <Field label="Phone *">
           <input
+            required
+            minLength={7}
+            maxLength={40}
+            inputMode="tel"
+            autoComplete="tel"
             value={form.phone}
             onChange={(e) => set("phone", e.target.value)}
             className="field"
@@ -92,7 +113,10 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
         </Field>
         <Field label="Email *">
           <input
+            required
             type="email"
+            maxLength={200}
+            autoComplete="email"
             value={form.email}
             onChange={(e) => set("email", e.target.value)}
             className="field"
@@ -115,6 +139,9 @@ export function QuoteForm({ initialMachine = "" }: { initialMachine?: string }) 
       </Field>
       <Field label="Requirement *">
         <textarea
+          required
+          minLength={MIN_REQUIREMENT_LENGTH}
+          maxLength={5_000}
           rows={5}
           value={form.requirement}
           onChange={(e) => set("requirement", e.target.value)}

@@ -84,7 +84,7 @@ const enquirySchema = z.object({
   phone: z.string().trim().min(7).max(40),
   email: z.string().trim().email().max(200),
   machine: z.string().trim().max(180).default(""),
-  requirement: z.string().trim().min(10).max(5_000),
+  requirement: z.string().trim().min(5).max(5_000),
   website: z.string().max(0).optional().default(""),
 });
 
@@ -462,18 +462,25 @@ export const submitEnquiry = createServerFn({ method: "POST" })
           "Your enquiry was saved, but email delivery is not configured yet. The team can still see it in Admin.",
       };
 
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from,
-        to,
-        reply_to: enquiry.email,
-        subject: `New machinery enquiry — ${enquiry.machine || "General requirement"}`,
-        html: enquiryEmailHtml(enquiry),
-      }),
-    });
-    if (!response.ok)
+    let response: Response;
+    try {
+      response = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from,
+          to,
+          reply_to: enquiry.email,
+          subject: `New machinery enquiry — ${enquiry.machine || "General requirement"}`,
+          html: enquiryEmailHtml(enquiry),
+        }),
+      });
+    } catch (error) {
+      console.error({
+        event: "enquiry_email_request_failed",
+        enquiryId: enquiry.id,
+        message: error instanceof Error ? error.message : "Unknown email request error",
+      });
       return {
         ok: true as const,
         saved: true,
@@ -481,6 +488,21 @@ export const submitEnquiry = createServerFn({ method: "POST" })
         warning:
           "Your enquiry was saved, but the email notification could not be delivered. The team can still see it in Admin.",
       };
+    }
+    if (!response.ok) {
+      console.error({
+        event: "enquiry_email_provider_rejected",
+        enquiryId: enquiry.id,
+        status: response.status,
+      });
+      return {
+        ok: true as const,
+        saved: true,
+        emailed: false,
+        warning:
+          "Your enquiry was saved, but the email notification could not be delivered. The team can still see it in Admin.",
+      };
+    }
     return { ok: true as const, saved: true, emailed: true };
   });
 
