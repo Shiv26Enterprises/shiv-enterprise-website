@@ -21,6 +21,7 @@ export const Route = createFileRoute("/about")({ component: About });
 const MACHINERY_TYPES = [
   "CNC machines",
   "CNC lathe machines",
+  "Boiler",
   "VMC / HMC machines",
   "Lathe machines",
   "Milling machines",
